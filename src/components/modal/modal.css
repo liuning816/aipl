@@ -1,0 +1,55 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  background: rgba(255, 255, 255, 0.123);
+  overflow: auto;
+  backdrop-filter: blur(100px);
+}
+
+.modal.no-blur {
+  backdrop-filter: none;
+}
+.modal-content {
+  position: relative;
+  background-color: #090909;
+  max-width: 90vw;
+  width: 850px;
+  min-height: 500px;
+  border-radius: 60px;
+  padding: 4rem;
+  padding-top: 5rem;
+  margin-block: 1em;
+  line-height: 1.5;
+  font-size: 1.2rem;
+  font-weight: 200;
+}
+
+/* 确认对话框专用样式（更小、更居中） */
+.confirm-box {
+  background-color: #0f0f12;
+  border-radius: 18px;
+  width: 560px;
+  max-width: calc(100vw - 40px);
+  padding: 1.6rem 1.8rem;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+.confirm-box h2 { font-size: 1.3rem; font-weight: 700; text-align:center; }
+.confirm-box p { font-size: 1rem; color: #cfcfcf; text-align:center; }
+.confirm-actions { display:flex; gap: 0.8rem; margin-top: 0.6rem; }
+.confirm-actions button { padding: 0.6rem 1.1rem; border-radius: 8px; font-weight:600; }
+.confirm-actions .confirm-yes { background:#4EAAD1; color:white; }
+.confirm-actions .confirm-no { background:transparent; color:#cfcfcf; border:1px solid rgba(255,255,255,0.06); }
+button.cross {
+  background-color: transparent;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}

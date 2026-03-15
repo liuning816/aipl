@@ -1,0 +1,191 @@
+{
+  "info": {
+    "name": "AIPL QuestionBank Admin APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Question bank moderation and interaction APIs for admin handoff and integration testing."
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "token", "value": "" },
+    { "key": "contentId", "value": "" },
+    { "key": "reportId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "User Interaction",
+      "item": [
+        {
+          "name": "Vote Content",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vote\": \"upvote\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/question-bank/contents/{{contentId}}/vote",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "question-bank", "contents", "{{contentId}}", "vote"]
+            }
+          }
+        },
+        {
+          "name": "Report Content",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"错误答案\",\n  \"detail\": \"模板示例：选项解释与标准答案不一致\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/question-bank/contents/{{contentId}}/report",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "question-bank", "contents", "{{contentId}}", "report"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Moderation",
+      "item": [
+        {
+          "name": "Admin Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "status"]
+            }
+          }
+        },
+        {
+          "name": "List Reports (Open)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/question-bank/reports?status=open&limit=50&skip=0",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "question-bank", "reports"],
+              "query": [
+                { "key": "status", "value": "open" },
+                { "key": "limit", "value": "50" },
+                { "key": "skip", "value": "0" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Resolve Report",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"resolved\",\n  \"note\": \"已核实，标记处理完成\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/question-bank/reports/{{reportId}}/resolve",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "question-bank", "reports", "{{reportId}}", "resolve"]
+            }
+          }
+        },
+        {
+          "name": "Reject Report",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"rejected\",\n  \"note\": \"经复核不成立\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/question-bank/reports/{{reportId}}/resolve",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "question-bank", "reports", "{{reportId}}", "resolve"]
+            }
+          }
+        },
+        {
+          "name": "Moderate Content - Hide",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"hide\",\n  \"reason\": \"管理员测试：隐藏内容\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/question-bank/content/{{contentId}}/moderate",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "question-bank", "content", "{{contentId}}", "moderate"]
+            }
+          }
+        },
+        {
+          "name": "Moderate Content - Delete",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"delete\",\n  \"reason\": \"管理员测试：删除内容\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/question-bank/content/{{contentId}}/moderate",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "question-bank", "content", "{{contentId}}", "moderate"]
+            }
+          }
+        },
+        {
+          "name": "Moderate Content - Restore",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"restore\",\n  \"reason\": \"管理员测试：恢复内容\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/question-bank/content/{{contentId}}/moderate",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "question-bank", "content", "{{contentId}}", "moderate"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
