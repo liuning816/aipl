@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 # 🧑‍💻 Learn Anything Easily With Personalized Learning Paths Using AI
 
 
@@ -62,11 +60,4 @@ Generative AI will be incorporated to create roadmaps, schedules and quizzes alo
 The flow of the solution can be understood by the following simplified user flow diagram
 
 ![alt text](public/process_flow.png)
-=======
-# aipl
-database program
->>>>>>> c2ba0ffd4cf01eb20ea0fd9b15a9ee7e17ffe3bb
-=======
-# aipl
-database program
->>>>>>> c2ba0ffd4cf01eb20ea0fd9b15a9ee7e17ffe3bb
+
